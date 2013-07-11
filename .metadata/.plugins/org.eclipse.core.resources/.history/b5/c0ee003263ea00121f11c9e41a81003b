@@ -28,7 +28,7 @@ public class MainActivity extends Activity {
         	e.printStackTrace();
         }
         
-        WebView webView = (WebView) findViewById(R.id.webView);
+        WebView webView = (WebView) findViewbyId(R.id.webView);
         webView.loadUrl(url.toString());
     }
 
