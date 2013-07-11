@@ -20,9 +20,7 @@ public class MainActivity extends Activity {
     }
 
     public void startIntent (View view) {
-    	Intent webIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.espn.com"));
     	
-    	startActivity(webIntent);
     }
     
     @Override
