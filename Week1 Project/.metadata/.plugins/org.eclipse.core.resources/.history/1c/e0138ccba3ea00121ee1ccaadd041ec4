@@ -23,7 +23,7 @@
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:layout_weight="75"
-            android:background = "@drawable/go" />
+            android:text="Go" />
     </LinearLayout>
     
     <LinearLayout
@@ -41,7 +41,7 @@
             android:layout_marginBottom="10dp"
             android:layout_marginTop="3dp"
             android:layout_weight="33" 
-            android:background = "@drawable/back"/>
+            android:text="Back"/>
             
 
         <Button
@@ -53,7 +53,7 @@
             android:layout_marginBottom="10dp"
             android:layout_marginTop="3dp"
             android:layout_weight="33"
-            android:background = "@drawable/forward" />
+            android:text="Forward" />
 
         <Button
             android:id="@+id/refreshButton"
@@ -64,7 +64,7 @@
             android:layout_marginBottom="10dp"
             android:layout_marginTop="3dp"
             android:layout_weight="33"
-            android:background = "@drawable/refresh" />
+            android:text="Refresh" />
 
     </LinearLayout>
     
