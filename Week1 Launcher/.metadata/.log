@@ -791,3 +791,13 @@ java.io.IOException: Output Stream is closed
 	at com.android.ddmlib.Log.e(Log.java:230)
 	at com.android.ddmuilib.logcat.LogCatReceiver$1.run(LogCatReceiver.java:119)
 	at java.lang.Thread.run(Thread.java:680)
+!SESSION 2013-07-11 23:04:30.454 -----------------------------------------------
+eclipse.buildId=v21.1.0-569685
+java.version=1.6.0_43
+java.vendor=Apple Inc.
+BootLoader constants: OS=macosx, ARCH=x86_64, WS=cocoa, NL=en_US
+Framework arguments:  -product com.android.ide.eclipse.adt.package.product -keyring /Users/jemcphe/.eclipse_keyring -showlocation
+Command-line arguments:  -os macosx -ws cocoa -arch x86_64 -product com.android.ide.eclipse.adt.package.product -keyring /Users/jemcphe/.eclipse_keyring -showlocation
+
+!ENTRY org.eclipse.core.net 1 0 2013-07-11 23:05:04.354
+!MESSAGE System property http.nonProxyHosts has been set to local|*.local|169.254/16|*.169.254/16 by an external source. This value will be overwritten using the values from the preferences

@@ -1,11 +1,3 @@
-/*
- * James E. McPherson III
- * Mobile Development Frameworks 3
- * Project 1
- * Term - 1307
- * 07/11/2013
- */
-
 package com.jemcphe.tinybrowser;
 
 import java.net.URL;
@@ -14,6 +6,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
+import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -24,7 +17,6 @@ import android.widget.EditText;
 
 public class MainActivity extends Activity implements OnClickListener{
 
-	//Global Variables
 	WebView webView;
 	String urlString;
 	EditText webAddress;
@@ -34,14 +26,16 @@ public class MainActivity extends Activity implements OnClickListener{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 		
-	//Grab the intent being sent to this application	
     Intent myIntent = getIntent();
+    Log.i("Intent Got", "getIntent() Successfull");
     
-    //Define the Edit Text Field
     webAddress = (EditText) findViewById(R.id.addressBar);
-    //Set Hint for user
-    webAddress.setHint("Enter Web Address Here");
     
+    if (webAddress != null){
+    	urlString = "http://" + webAddress.getText().toString();
+    } else {
+    	webAddress.setHint("Enter Web Address Here");
+    }
     
       
     //Create Nav Buttons
@@ -56,7 +50,7 @@ public class MainActivity extends Activity implements OnClickListener{
     forwardButton.setOnClickListener(this);
     refreshButton.setOnClickListener(this);
 
-    //Create Uri from intent data
+    
    	Uri webData = myIntent.getData();
   	URL url = null;
     
@@ -67,10 +61,6 @@ public class MainActivity extends Activity implements OnClickListener{
    	 	e.printStackTrace();
    	}
     
-   	/*
-   	 * Define WebView, enable javascript, and setWebViewClient so other browsers
-   	 * won't steal my thunder!!
-   	 */
   	webView = (WebView) findViewById(R.id.webView); 
   	webView.getSettings().setJavaScriptEnabled(true);
   	webView.setWebViewClient(new WebViewClient() {
@@ -81,7 +71,7 @@ public class MainActivity extends Activity implements OnClickListener{
   			
   		}
   	});
-  	//Load the URL passed from intent
+  	
   	webView.loadUrl(url.toString());
    	
 }
@@ -98,24 +88,19 @@ public class MainActivity extends Activity implements OnClickListener{
 		// TODO Auto-generated method stub
 		//Switch through id's
 		switch(v.getId()){
-		//Go Button
 		case R.id.goButton:
-			//Load user input from webAddress Field
 			webView.loadUrl("http://" + webAddress.getText().toString());
 			break;
-		//Back Button
 		case R.id.backButton:
 			if (webView.canGoBack()){
 				webView.goBack();
 			}
 			break;
-		//Forward Button
 		case R.id.forwardButton:
 			if (webView.canGoForward()){
 				webView.goForward();
 			}
 			break;
-		//Refresh Button
 		case R.id.refreshButton:
 			webView.reload();
 			break;

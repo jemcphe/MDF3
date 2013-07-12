@@ -7,6 +7,7 @@
 <fullyQualifiedTypeName name="android.webkit.WebViewClient"/>
 <fullyQualifiedTypeName name="android.view.View.OnClickListener"/>
 <fullyQualifiedTypeName name="android.widget.Button"/>
-<fullyQualifiedTypeName name="com.jemcphe.tinybrowser.R.id"/>
 <fullyQualifiedTypeName name="android.widget.EditText"/>
+<fullyQualifiedTypeName name="android.util.Log"/>
+<fullyQualifiedTypeName name="com.jemcphe.tinybrowser.R.id"/>
 </qualifiedTypeNameHistroy>
