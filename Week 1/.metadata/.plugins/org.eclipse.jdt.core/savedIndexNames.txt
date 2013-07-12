@@ -1,4 +1,0 @@
-INDEX VERSION 1.126+/Users/jemcphe/Desktop/MDF3/Week 1/.metadata/.plugins/org.eclipse.jdt.core
-1026779192.index
-4103046615.index
-2926558025.index
