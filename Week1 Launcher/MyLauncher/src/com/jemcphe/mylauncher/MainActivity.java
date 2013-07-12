@@ -9,9 +9,13 @@ import android.content.Intent;
 import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 
 public class MainActivity extends Activity {
 
+	String url;
+	EditText urlField;
+	
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -19,7 +23,7 @@ public class MainActivity extends Activity {
         
     }
 
-    public void startIntent (View view) {
+    public void startIntent (View view) {    	
     	Intent webIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.espn.com"));
     	
     	startActivity(webIntent);

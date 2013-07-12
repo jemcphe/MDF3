@@ -6,19 +6,51 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
+import android.util.Log;
 import android.view.Menu;
+import android.view.View;
+import android.view.View.OnClickListener;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.Button;
+import android.widget.EditText;
 
-public class MainActivity extends Activity {
+public class MainActivity extends Activity implements OnClickListener{
 
+	WebView webView;
+	String urlString;
+	EditText webAddress;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 		
     Intent myIntent = getIntent();
-        
+    Log.i("Intent Got", "getIntent() Successfull");
+    
+    webAddress = (EditText) findViewById(R.id.addressBar);
+    
+    if (webAddress != null){
+    	urlString = "http://" + webAddress.getText().toString();
+    } else {
+    	webAddress.setHint("Enter Web Address Here");
+    }
+    
+      
+    //Create Nav Buttons
+    Button goButton = (Button) findViewById(R.id.goButton);
+    Button backButton = (Button) findViewById(R.id.backButton);
+    Button forwardButton = (Button) findViewById(R.id.forwardButton);
+    Button refreshButton = (Button) findViewById(R.id.refreshButton);
+    
+    //setOnClickListeners
+    goButton.setOnClickListener(this);
+    backButton.setOnClickListener(this);
+    forwardButton.setOnClickListener(this);
+    refreshButton.setOnClickListener(this);
+
+    
    	Uri webData = myIntent.getData();
   	URL url = null;
     
@@ -29,13 +61,13 @@ public class MainActivity extends Activity {
    	 	e.printStackTrace();
    	}
     
-  	WebView webView = (WebView) findViewById(R.id.webView); 
-  	
+  	webView = (WebView) findViewById(R.id.webView); 
+  	webView.getSettings().setJavaScriptEnabled(true);
   	webView.setWebViewClient(new WebViewClient() {
   		public boolean shouldOverrideUrlLoading (WebView view, String url) {
 			
-  			view.loadUrl(url.toString());
-  			return false;
+  			view.loadUrl(url);
+  			return true;
   			
   		}
   	});
@@ -49,6 +81,33 @@ public class MainActivity extends Activity {
 		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.main, menu);
 		return true;
+	}
+
+	@Override
+	public void onClick(View v) {
+		// TODO Auto-generated method stub
+		//Switch through id's
+		switch(v.getId()){
+		case R.id.goButton:
+			webView.loadUrl("http://" + webAddress.getText().toString());
+			break;
+		case R.id.backButton:
+			if (webView.canGoBack()){
+				webView.goBack();
+			}
+			break;
+		case R.id.forwardButton:
+			if (webView.canGoForward()){
+				webView.goForward();
+			}
+			break;
+		case R.id.refreshButton:
+			webView.reload();
+			break;
+		default:
+			break;
+		
+		}
 	}
 
 }
