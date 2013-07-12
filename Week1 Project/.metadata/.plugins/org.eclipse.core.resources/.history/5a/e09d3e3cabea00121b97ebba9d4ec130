@@ -13,7 +13,6 @@ import java.net.URL;
 import android.net.Uri;
 import android.os.Bundle;
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.view.KeyEvent;
@@ -21,7 +20,6 @@ import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.inputmethod.EditorInfo;
-import android.view.inputmethod.InputMethodManager;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.Button;
@@ -55,7 +53,7 @@ public class MainActivity extends Activity implements OnClickListener{
 		@Override
 		public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
 			boolean handled = false;
-            if (actionId == EditorInfo.IME_ACTION_GO) {
+            if (actionId == EditorInfo.IME_ACTION_SEND) {
             	webView.loadUrl("http://" + webAddress.getText().toString());
                 handled = true;
             }

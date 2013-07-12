@@ -59,6 +59,7 @@ public class MainActivity extends Activity implements OnClickListener{
             	webView.loadUrl("http://" + webAddress.getText().toString());
                 handled = true;
             }
+
             return handled;
 		}
     });

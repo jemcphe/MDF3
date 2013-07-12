@@ -9,17 +9,14 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:weightSum="100"
-        android:descendantFocusability="beforeDescendants"
-		android:focusableInTouchMode="true" >
+        android:weightSum="100" >
 
         <EditText
             android:id="@+id/addressBar"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:inputType="text"
-            android:layout_weight="25"
-            android:imeOptions="actionGo" />
+            android:layout_weight="25" />
 
         <Button
             android:id="@+id/goButton"

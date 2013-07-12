@@ -18,8 +18,7 @@
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:inputType="text"
-            android:layout_weight="25"
-            android:imeOptions="actionGo" />
+            android:layout_weight="25" />
 
         <Button
             android:id="@+id/goButton"

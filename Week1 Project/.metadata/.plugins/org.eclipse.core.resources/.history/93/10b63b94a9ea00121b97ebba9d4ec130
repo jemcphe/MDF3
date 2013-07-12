@@ -13,21 +13,14 @@ import java.net.URL;
 import android.net.Uri;
 import android.os.Bundle;
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
-import android.content.pm.ActivityInfo;
-import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.view.inputmethod.EditorInfo;
-import android.view.inputmethod.InputMethodManager;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
-import android.widget.TextView.OnEditorActionListener;
 
 public class MainActivity extends Activity implements OnClickListener{
 
@@ -41,9 +34,6 @@ public class MainActivity extends Activity implements OnClickListener{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 		
-	//Control the Screen
-	setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-		
 	//Grab the intent being sent to this application	
     Intent myIntent = getIntent();
     
@@ -51,17 +41,7 @@ public class MainActivity extends Activity implements OnClickListener{
     webAddress = (EditText) findViewById(R.id.addressBar);
     //Set Hint for user
     webAddress.setHint("Enter Web Address Here");
-    webAddress.setOnEditorActionListener(new OnEditorActionListener() {
-		@Override
-		public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-			boolean handled = false;
-            if (actionId == EditorInfo.IME_ACTION_GO) {
-            	webView.loadUrl("http://" + webAddress.getText().toString());
-                handled = true;
-            }
-            return handled;
-		}
-    });
+    
     
       
     //Create Nav Buttons
