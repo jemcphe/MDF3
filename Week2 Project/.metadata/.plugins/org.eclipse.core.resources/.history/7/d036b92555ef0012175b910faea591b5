@@ -57,9 +57,5 @@ public class MainActivity extends Activity implements OnClickListener {
 		
 		
 	}
-	
-	//Create function that will give user notification that it is saving an image
-	
     
 }
-

@@ -2,7 +2,6 @@ package com.jemcphe.pictcha;
 
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.Environment;
 import android.provider.MediaStore;
 import android.app.Activity;
 import android.content.Intent;
@@ -51,15 +50,9 @@ public class MainActivity extends Activity implements OnClickListener {
 		
 		startActivityForResult(cameraIntent, 100);
 		
-		Intent scanIntent = new Intent(Intent.ACTION_MEDIA_MOUNTED, Uri.parse("file://" + Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES)));
 		
-		sendBroadcast(scanIntent);
 		
 		
 	}
-	
-	//Create function that will give user notification that it is saving an image
-	
     
 }
-

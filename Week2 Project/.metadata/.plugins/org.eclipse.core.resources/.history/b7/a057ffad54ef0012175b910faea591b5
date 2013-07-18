@@ -51,15 +51,9 @@ public class MainActivity extends Activity implements OnClickListener {
 		
 		startActivityForResult(cameraIntent, 100);
 		
-		Intent scanIntent = new Intent(Intent.ACTION_MEDIA_MOUNTED, Uri.parse("file://" + Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES)));
-		
-		sendBroadcast(scanIntent);
+
 		
 		
 	}
-	
-	//Create function that will give user notification that it is saving an image
-	
     
 }
-
