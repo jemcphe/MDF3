@@ -25,6 +25,7 @@ public class MainActivity extends Activity implements OnClickListener {
         Button cameraButton = (Button) findViewById(R.id.cameraButton);
         cameraButton.setOnClickListener(this);
         
+        //imageUri = getOutputMediaFileUri();
     }
 
 
@@ -44,14 +45,9 @@ public class MainActivity extends Activity implements OnClickListener {
 		//Create intent to use existing camera applications
 		Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
 		
-		//Create Uri using the StoreMedia Class
-		imageUri = StoreMedia.getOutputMediaFileUri(StoreMedia.MEDIA_TYPE_IMAGE);
-		cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, imageUri);
+		startActivityForResult(cameraIntent, 1);
 		
-		startActivityForResult(cameraIntent, 100);
-		
-		
-		
+		//Call on StoreMedia Class to save image
 		
 	}
     
