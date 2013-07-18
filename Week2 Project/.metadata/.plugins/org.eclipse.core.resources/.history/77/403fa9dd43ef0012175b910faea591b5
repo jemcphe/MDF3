@@ -1,6 +1,5 @@
 package com.jemcphe.pictcha;
 
-import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.app.Activity;
@@ -13,8 +12,6 @@ import android.widget.Button;
 
 public class MainActivity extends Activity implements OnClickListener {
 
-	public Uri imageUri;
-	
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -24,7 +21,6 @@ public class MainActivity extends Activity implements OnClickListener {
         Button cameraButton = (Button) findViewById(R.id.cameraButton);
         cameraButton.setOnClickListener(this);
         
-        //imageUri = getOutputMediaFileUri();
     }
 
 
@@ -44,8 +40,6 @@ public class MainActivity extends Activity implements OnClickListener {
 		//Create intent to use existing camera applications
 		Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
 		
-		startActivityForResult(cameraIntent, 1);
-			
 	}
     
 }

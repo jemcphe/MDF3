@@ -45,7 +45,8 @@ public class MainActivity extends Activity implements OnClickListener {
 		Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
 		
 		startActivityForResult(cameraIntent, 1);
-			
+		
+		
 	}
     
 }
