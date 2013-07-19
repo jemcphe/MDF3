@@ -19,6 +19,8 @@ public class StoreMedia {
 	      return Uri.fromFile(getOutputMediaFile(type));
 	}
 
+	
+	
 	/** Create a File for saving an image or video */
 	@SuppressLint("SimpleDateFormat")
 	public static File getOutputMediaFile(int type){

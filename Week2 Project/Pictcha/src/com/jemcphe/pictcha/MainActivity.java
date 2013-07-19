@@ -3,7 +3,12 @@ package com.jemcphe.pictcha;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
+import android.os.Handler;
+import android.os.Message;
+import android.os.Messenger;
+import android.preference.PreferenceManager.OnActivityResultListener;
 import android.provider.MediaStore;
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.Notification;
 import android.app.NotificationManager;
@@ -24,6 +29,10 @@ public class MainActivity extends Activity implements OnClickListener {
 	NotificationManager notifyManager;
 	Notification notification;
 
+
+	private static final int CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE = 100;
+	private static final int CAPTURE_VIDEO_ACTIVITY_REQUEST_CODE = 200;
+	
 	//Notification ID's
 	private final int NOTIFY_SAVE = 1;
 	private final int NOTIFY_SUCCESS = 2;
@@ -40,6 +49,7 @@ public class MainActivity extends Activity implements OnClickListener {
 		Button cameraButton = (Button) findViewById(R.id.cameraButton);
 		cameraButton.setOnClickListener(this);
 
+		scanImages();
 	}
 
 
@@ -50,22 +60,22 @@ public class MainActivity extends Activity implements OnClickListener {
 		return true;
 	}
 
+	
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		// TODO Auto-generated method stub
+		if (requestCode == CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE) {
+			Log.i("OnActivityResult", "RESULT_OK");
+			notifyFinish();
+	    }
+	}
 
+	@SuppressLint("HandlerLeak")
 	@Override
 	public void onClick(View v) {
 		// TODO Auto-generated method stub
 		Log.i("onClick()", "Button Pressed");
-
-		//Create intent to use existing camera applications
-		Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-
-		//Create Uri using the StoreMedia Class
-		imageUri = StoreMedia.getOutputMediaFileUri(StoreMedia.MEDIA_TYPE_IMAGE);
-		cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, imageUri);
-
-		startActivityForResult(cameraIntent, 100);
-
-		notifyFinish();
+		cameraHandler();
 	}
 
 	//Create function that will give user notification that it is saving an image
@@ -92,6 +102,38 @@ public class MainActivity extends Activity implements OnClickListener {
 
 		sendBroadcast(scanIntent);
 	}
+	
+	@SuppressLint("HandlerLeak")
+	public void cameraHandler() {		
+			
+//		@Override
+//		protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+//			if (requestCode == CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE) {
+//				if (resultCode == RESULT_OK) {
+//					// Image captured and saved to fileUri specified in the Intent
+//					notifyFinish();
+//				} else if (resultCode == RESULT_CANCELED) {
+//					// User cancelled the image capture
+//				} else {
+//					// Image capture failed, advise user
+//				}
+//			}
+//		};
+		
+		//CREATE MESSENGER
+		//Messenger dataMessenger = new Messenger(handler);
+		
+		//Create intent to use existing camera applications
+		Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+
+		//Create Uri using the StoreMedia Class
+		imageUri = StoreMedia.getOutputMediaFileUri(StoreMedia.MEDIA_TYPE_IMAGE);
+		cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, imageUri);
+
+		startActivityForResult(cameraIntent, CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE);
+		
+	}
+	
 
 	public void notifyFinish() {
 
