@@ -92,18 +92,10 @@ public class MainActivity extends Activity implements OnClickListener {
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		// TODO Auto-generated method stub
-		switch(resultCode){
-		case RESULT_OK:
+		if (requestCode == CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE) {
 			Log.i("OnActivityResult", "RESULT_OK");
 			notifyFinish();
-			break;
-		case RESULT_CANCELED:
-			Log.i("OnActivityResult", "RESULT_CANCELED");
-			break;
-		default:
-			break;
-		}
- 
+	    }
 	}
 
 	@SuppressLint("HandlerLeak")

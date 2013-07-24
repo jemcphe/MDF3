@@ -103,7 +103,10 @@ public class MainActivity extends Activity implements OnClickListener {
 		default:
 			break;
 		}
- 
+		if (resultCode == RESULT_OK) {
+			Log.i("OnActivityResult", "RESULT_OK");
+			notifyFinish();
+	    } 
 	}
 
 	@SuppressLint("HandlerLeak")
