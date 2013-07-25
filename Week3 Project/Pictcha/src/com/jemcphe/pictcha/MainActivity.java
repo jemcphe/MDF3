@@ -81,8 +81,10 @@ public class MainActivity extends Activity implements OnClickListener {
 	            galleryIntent.setType("image/*");
 	            startActivity(galleryIntent);
 	            return true;
-	        case R.id.action_settings:
-	        	Log.i("ITEM ID", "Settings Selected (R.id.action_settings");
+	        case R.id.action_developerInfo:
+	        	Log.i("ITEM ID", "Developer Info Selected (R.id.action_developerInfo");
+	        	Intent developerPage = new Intent(this, DeveloperInfo.class);
+	        	startActivityForResult(developerPage, 0);
 	            return true;
 	        default:
 	            return super.onOptionsItemSelected(item);
