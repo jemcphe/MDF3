@@ -26,7 +26,7 @@ import com.jemcphe.pictcha.StoreMedia;
 
 public class MainActivity extends Activity implements OnClickListener {
 
-	public Uri imageUri;
+	public static Uri imageUri;
 	public boolean notifyIcon = true;
 
 	NotificationManager notifyManager;
@@ -142,7 +142,7 @@ public class MainActivity extends Activity implements OnClickListener {
 	}
 	
 	@SuppressLint("HandlerLeak")
-	public void cameraHandler() {		
+	public static void cameraHandler() {		
 		
 		//Create intent to use existing camera applications
 		Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);

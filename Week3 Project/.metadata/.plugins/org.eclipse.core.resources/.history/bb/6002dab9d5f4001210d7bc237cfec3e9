@@ -26,7 +26,7 @@
             </intent-filter>
         </activity>
         <activity 
-            android:name="com.jemcphe.pictcha.DeveloperInfo" >
+            android:name="com.jemcphe.pictcha.DeveloperInfo>
         </activity>
             
     </application>

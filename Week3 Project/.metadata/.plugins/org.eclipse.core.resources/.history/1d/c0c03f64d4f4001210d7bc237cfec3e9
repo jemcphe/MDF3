@@ -84,7 +84,7 @@ public class MainActivity extends Activity implements OnClickListener {
 	        case R.id.action_developerInfo:
 	        	Log.i("ITEM ID", "Developer Info Selected (R.id.action_developerInfo");
 	        	Intent developerPage = new Intent(this, DeveloperInfo.class);
-	        	startActivity(developerPage);
+	        	startActivityForResult(developerPage, 0);
 	            return true;
 	        default:
 	            return super.onOptionsItemSelected(item);

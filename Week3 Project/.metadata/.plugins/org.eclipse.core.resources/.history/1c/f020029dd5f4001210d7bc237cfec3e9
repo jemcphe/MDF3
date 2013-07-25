@@ -25,10 +25,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity 
-            android:name="com.jemcphe.pictcha.DeveloperInfo" >
-        </activity>
-            
     </application>
 
 </manifest>

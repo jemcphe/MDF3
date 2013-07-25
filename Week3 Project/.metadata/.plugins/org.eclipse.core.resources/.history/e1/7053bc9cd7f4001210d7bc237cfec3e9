@@ -12,28 +12,25 @@
         android:layout_width="231dp"
         android:layout_height="wrap_content"
         android:text="James E. McPherson III"
-        android:textSize="20sp"
+        android:textSize="24sp"
         android:textStyle="bold" />
 
     <TextView
         android:id="@+id/school"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Full Sail University - Student" 
-        android:textSize="16sp"/>
+        android:text="Full Sail University - Student" />
     
     <TextView
         android:id="@+id/course"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Mobile Development Frameworks 3" 
-        android:textSize="16sp"/>
+        android:text="Mobile Development Frameworks 3" />
     
     <TextView
         android:id="@+id/term"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Term: 1307"
-        android:textSize="16sp" />
+        android:text="Term: 1307" />
 
 </LinearLayout>
