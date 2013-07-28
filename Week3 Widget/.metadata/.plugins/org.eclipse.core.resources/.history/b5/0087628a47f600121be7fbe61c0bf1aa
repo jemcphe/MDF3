@@ -1,0 +1,23 @@
+package com.jemcphe.teamwidget;
+
+import android.app.Activity;
+import android.appwidget.AppWidgetManager;
+import android.os.Bundle;
+
+public class WidgetActivity extends Activity {
+
+	int widgetId;
+	
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		// TODO Auto-generated method stub
+		super.onCreate(savedInstanceState);
+		
+		Bundle extras = getIntent().getExtras();
+		
+		if (extras != null) {
+			widgetId = extras.getInt(AppWidgetManager.EXTRA_APPWIDGET_ID, AppWidgetManager.INVALID_APPWIDGET_ID);
+		}
+	}
+
+}

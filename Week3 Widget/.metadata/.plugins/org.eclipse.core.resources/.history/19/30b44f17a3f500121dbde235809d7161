@@ -1,0 +1,7 @@
+package com.jemcphe.teamwidget;
+
+import android.content.ContentProvider;
+
+public class ContentProvider extends ContentProvider {
+
+}

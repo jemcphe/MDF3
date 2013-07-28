@@ -1,0 +1,53 @@
+package com.jemcphe.teamwidget;
+
+import android.app.Activity;
+import android.appwidget.AppWidgetManager;
+import android.os.Bundle;
+import android.util.Log;
+import android.widget.RemoteViews;
+
+public class WidgetActivity extends Activity {
+
+	int widgetId;
+	
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		// TODO Auto-generated method stub
+		super.onCreate(savedInstanceState);
+		
+		Bundle extras = getIntent().getExtras();
+		
+		if (extras != null) {
+			widgetId = extras.getInt(AppWidgetManager.EXTRA_APPWIDGET_ID, AppWidgetManager.INVALID_APPWIDGET_ID);
+			onWidget();
+		}
+		
+	}
+	
+	public void onWidget() {
+        Log.i("SET_WIDGET", "Set button clicked!");
+
+        if (widgetId != AppWidgetManager.INVALID_APPWIDGET_ID) {
+            RemoteViews remoteViews = new RemoteViews(this.getPackageName(), R.layout.widget_layout);
+
+            // Set text
+            remoteViews.setTextViewText(R.id.team1, "Texas ");
+            remoteViews.setTextViewText(R.id.team2, "Oakland Athletics");
+            remoteViews.setTextViewText(R.id.runs1, "11");
+            remoteViews.setTextViewText(R.id.runs2, "55");
+
+//            Intent buttonIntent = new Intent(_context, MainActivity.class);
+//            PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, buttonIntent ,0);
+//
+//            remoteViews.setOnClickPendingIntent(R.id.go_button, pendingIntent);
+
+            AppWidgetManager.getInstance(this).updateAppWidget(widgetId, remoteViews);
+
+//            Intent resultValue = new Intent();
+//            resultValue.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, widgetId);
+//            setResult(RESULT_OK, resultValue);
+//            finish();
+        }
+    }
+
+}
