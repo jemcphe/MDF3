@@ -1,0 +1,12 @@
+package com.jemcphe.pictcha2;
+
+import android.content.Context;
+
+public class JavaScriptInterface {
+	Context _context;
+	
+	JavaScriptInterface (Context context){
+		
+	}
+
+}

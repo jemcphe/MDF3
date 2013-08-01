@@ -10,8 +10,12 @@
 		<meta name="author" content="James McPherson" />
 		<meta name="viewport" content="width=device-width; initial-scale=1.0" />
 		<style>
+			body{
+				background-color: #f9f3d0;
+			}
 			#imageText {
 				text-align: center;
+				padding-top: 40px;
 				padding-bottom: 20px;
 			}
 			#target {
@@ -25,8 +29,18 @@
 			<img  src="text.png" alt="Press The Target To Access The Camera" width="300px"   height="100px" />
 		</div>
 		<div id="target">
-			<img  src="bullseye.png" alt="Target" width="200px" height="200px" />
+			<script type="text/javascript">
+    				function showAndroidToast(toast) {
+        				Android.showToast(toast);
+    				}
+    			</script>
+			<input type="button" value="Click And Pray!!" onClick="showAndroidToast('It Worked')" />
+			
+		
+<!-- 			<img  src="bullseye.png" alt="Target" width="150px" height="150px" /> -->		
 		</div>
+		
+
 		
 	</body>
 </html>
