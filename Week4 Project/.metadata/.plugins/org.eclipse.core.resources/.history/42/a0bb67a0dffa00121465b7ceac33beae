@@ -1,0 +1,54 @@
+package com.jemcphe.pictcha2;
+
+import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
+import android.provider.MediaStore;
+import android.sax.StartElementListener;
+import android.util.Log;
+import android.webkit.JavascriptInterface;
+import android.widget.Toast;
+
+public class JavaScriptInterface {
+	Context _context;
+	
+	public Uri imageUri;
+	public boolean notifyIcon = true;
+	
+	private static final int CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE = 100;
+	private static final int CAPTURE_VIDEO_ACTIVITY_REQUEST_CODE = 200;
+	
+	JavaScriptInterface (Context context){
+		_context = context;
+	}
+	
+    /** Show a toast from the web page */
+	@JavascriptInterface
+    public void showToast(String toast) {
+        Toast.makeText(_context, toast, Toast.LENGTH_SHORT).show();
+    }
+
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		// TODO Auto-generated method stub
+		if (requestCode == CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE) {
+			Log.i("OnActivityResult", "RESULT_OK");
+			notifyFinish();
+	    }
+	}
+	
+	public void cameraHandler() {		
+		
+		//Create intent to use existing camera applications
+		Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+
+		//Create Uri using the StoreMedia Class
+		imageUri = StoreMedia.getOutputMediaFileUri(StoreMedia.MEDIA_TYPE_IMAGE);
+		cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, imageUri);
+
+		
+		startActivityForResult(cameraIntent, CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE);
+		
+	}
+	
+}

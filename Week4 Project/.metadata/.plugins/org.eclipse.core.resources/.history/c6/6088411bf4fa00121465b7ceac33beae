@@ -1,0 +1,65 @@
+package com.jemcphe.pictcha2;
+
+import android.annotation.SuppressLint;
+import android.app.Activity;
+import android.app.Fragment;
+import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
+import android.provider.MediaStore;
+import android.sax.StartElementListener;
+import android.util.Log;
+import android.webkit.JavascriptInterface;
+import android.widget.Toast;
+
+@SuppressLint("ValidFragment")
+public class JavaScriptInterface extends Fragment{
+	Context _context;
+	
+	public static Uri imageUri;
+	public static boolean notifyIcon = true;
+	
+	public static final int CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE = 100;
+//	private static final int CAPTURE_VIDEO_ACTIVITY_REQUEST_CODE = 200;
+	
+	//Create an Interface to communicate with Activity
+		public interface OnCameraButtonClicked {
+			void cameraHandler();
+		}
+	
+	//Create a private connection to MainActivity method startSearchActivity
+		private OnCameraButtonClicked parentActivity;
+		
+		
+		
+		public void onAttach(Activity activity) {
+			// TODO Auto-generated method stub
+			super.onAttach(activity);
+			
+			if(activity instanceof OnCameraButtonClicked){
+				parentActivity = (OnCameraButtonClicked) activity;
+			}
+			else {
+				throw new ClassCastException(activity.toString() + "must implement onCameraButtonClicked");
+			}
+			
+		}
+	
+	JavaScriptInterface (Context context){
+		_context = context;
+	}
+	
+    /** Show a toast from the web page */
+	@JavascriptInterface
+    public void showToast(String toast) {
+        Toast.makeText(_context, toast, Toast.LENGTH_SHORT).show();
+    }
+
+	@JavascriptInterface
+	public void startCamera(Context context){
+		Log.i("startCamera", "Camera Started");
+		parentActivity.cameraHandler();
+	}
+
+	
+}

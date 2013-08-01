@@ -1,0 +1,105 @@
+package com.jemcphe.pictcha2;
+
+import android.net.Uri;
+import android.os.Bundle;
+import android.provider.MediaStore;
+import android.annotation.SuppressLint;
+import android.app.Activity;
+import android.app.Notification;
+import android.app.NotificationManager;
+import android.content.Intent;
+import android.support.v4.app.NotificationCompat;
+import android.util.Log;
+import android.view.Menu;
+import android.webkit.JavascriptInterface;
+import android.webkit.WebSettings;
+import android.webkit.WebView;
+import android.widget.Toast;
+
+public class MainActivity extends Activity {
+	
+	
+
+	NotificationManager notifyManager;
+	Notification notification;
+
+	
+	
+	//Notification ID's
+	private final int NOTIFY_SAVE = 1;
+	private final int NOTIFY_SUCCESS = 2;
+
+    @SuppressLint({ "SetJavaScriptEnabled", "JavascriptInterface" })
+	@Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        
+		notifyManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+		notification = new Notification();
+        
+        WebView webView = (WebView) findViewById(R.id.webView1);
+        webView.loadUrl("file:///android_asset/www/index.html");
+        
+        WebSettings webSettings = webView.getSettings();
+        webSettings.setJavaScriptEnabled(true);
+        
+        webView.addJavascriptInterface(new JavaScriptInterface(this), "Android");
+        
+    }
+
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.main, menu);
+        return true;
+    }
+    
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		// TODO Auto-generated method stub
+		if (requestCode == JavaScriptInterface.CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE) {
+			Log.i("OnActivityResult", "RESULT_OK");
+			//notifyFinish();
+	    }
+	}
+	
+	@JavascriptInterface
+    public void showToast(String toast) {
+        Toast.makeText(this, toast, Toast.LENGTH_SHORT).show();
+    }
+	
+	@JavascriptInterface
+	public void cameraHandler() {		
+		
+		//Create intent to use existing camera applications
+		Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+
+		//Create Uri using the StoreMedia Class
+		JavaScriptInterface.imageUri = StoreMedia.getOutputMediaFileUri(StoreMedia.MEDIA_TYPE_IMAGE);
+		cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, JavaScriptInterface.imageUri);
+
+		
+		startActivityForResult(cameraIntent, JavaScriptInterface.CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE);
+		
+	}
+	
+//	public void notifyFinish() {
+//
+//		NotificationCompat.Builder notifyBuilder = new NotificationCompat.Builder(this)
+//		.setSmallIcon(R.drawable.bullseye)
+//		.setContentTitle("Image Saved Successfully");
+//
+//
+//		notification = notifyBuilder.build();
+//
+//		if(this.notif) {
+//			notifyManager.notify(NOTIFY_SUCCESS, notification);
+//		} else {
+//			notifyManager.cancel(NOTIFY_SUCCESS);
+//		}
+//
+//	}
+    
+}
