@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+	android:orientation="vertical"
+	android:paddingTop="20dp"
+	android:paddingLeft="20dp"
+    android:background="#f9f3d0" >
+
+    <TextView
+        android:id="@+id/name"
+        android:layout_width="231dp"
+        android:layout_height="wrap_content"
+        android:text="James E. McPherson III"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/school"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Full Sail University - Student" 
+        android:textSize="16sp"/>
+    
+    <TextView
+        android:id="@+id/course"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Mobile Development Frameworks 3" 
+        android:textSize="16sp"/>
+    
+    <TextView
+        android:id="@+id/term"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Term: 1307"
+        android:textSize="16sp" />
+
+</LinearLayout>

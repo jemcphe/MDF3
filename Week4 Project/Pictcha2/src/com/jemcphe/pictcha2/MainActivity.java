@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 
@@ -61,6 +62,20 @@ public class MainActivity extends Activity {
         return true;
     }
     
+    @Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+	    // Handle presses on the action bar items
+	    switch (item.getItemId()) {
+	        case R.id.action_developerInfo:
+	        	Log.i("ITEM ID", "Developer Info Selected (R.id.action_developerInfo");
+	        	Intent developerPage = new Intent(this, DeveloperInfo.class);
+	        	startActivity(developerPage);
+	            return true;
+	        default:
+	            return super.onOptionsItemSelected(item);
+	    }
+	}
+    
 	
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -89,7 +104,7 @@ public class MainActivity extends Activity {
 	public void notifyFinish() {
 
 		NotificationCompat.Builder notifyBuilder = new NotificationCompat.Builder(this)
-		.setSmallIcon(R.drawable.bullseye)
+		.setSmallIcon(R.drawable.small_icon)
 		.setContentTitle("Image Saved Successfully");
 
 

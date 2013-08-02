@@ -21,6 +21,16 @@
 			#target {
 				text-align: center;
 			}
+			.bullseye {
+				background: url(bullseye.png);
+				width: 150px;
+				height:150px;
+				border: none;
+				
+			}
+			.bullseye:active {
+				background: url(bullseye-pressed.png);
+			}
 		</style>
 	</head>
 	<body>
@@ -37,9 +47,9 @@
     				}
     			</script>
 <!-- 			<input type="button" value="Toast" onClick="showAndroidToast('It Worked')" /> -->			
-<!-- 			<input id="bullseye" type="button" src="bullseye.png"  onClick="callCamera('CAMERA')" /> -->			
+ 			 <input class="bullseye" type="button" onClick="callCamera('CAMERA')" />			
 		
-			<img  src="bullseye.png" alt="Target" width="150px" height="150px" onclick="callCamera('CAMERA')"/>	
+			<!-- <img  src="bullseye.png" alt="Target" width="150px" height="150px" onclick="callCamera('CAMERA')"/> -->	
 			</div>		
 
 		
