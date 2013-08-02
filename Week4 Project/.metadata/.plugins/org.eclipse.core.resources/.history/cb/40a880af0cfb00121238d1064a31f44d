@@ -92,7 +92,6 @@ public class MainActivity extends Activity {
 	    }
 	}
 	
-	//This Function triggers a notification to be created if there is a successful image
 	public void notifyFinish() {
 
 		NotificationCompat.Builder notifyBuilder = new NotificationCompat.Builder(this)

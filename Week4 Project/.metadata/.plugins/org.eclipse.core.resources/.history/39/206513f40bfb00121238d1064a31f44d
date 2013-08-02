@@ -1,10 +1,3 @@
-/*
- * James E. McPherson III
- * MDF 3 - Week 4 Project
- * Term: 1307
- * 08/01/2013
- */
-
 package com.jemcphe.pictcha2;
 
 import android.os.Bundle;
@@ -22,10 +15,12 @@ import android.webkit.WebView;
 
 public class MainActivity extends Activity {
 	
-	//Global Variables
 	public boolean notifyIcon = true;
+
 	NotificationManager notifyManager;
 	Notification notification;
+
+	
 	
 	//Notification ID's
 	//private final int NOTIFY_SAVE = 1;
@@ -37,18 +32,25 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         
-        //Declare Notification Manager
 		notifyManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
 		notification = new Notification();
         
-		//Create the Webview
         WebView webView = (WebView) findViewById(R.id.webView1);
         webView.loadUrl("file:///android_asset/www/index.html");
-        //Create webSettings
+        
         WebSettings webSettings = webView.getSettings();
         webSettings.setJavaScriptEnabled(true);
-        //Add Javascript Interface for Binding Javascript code
+        
         webView.addJavascriptInterface(new JavaScriptInterface(this), "Android");
+        
+//        webView.setWebChromeClient(new WebChromeClient() {
+//        	
+//        	@SuppressWarnings("unused")
+//			public void cameraSelected() {
+//        		String response = "In WebChromeClient";
+//        		cameraHandler(response);
+//        	}
+//        });
         
     }
 
@@ -64,10 +66,8 @@ public class MainActivity extends Activity {
 	public boolean onOptionsItemSelected(MenuItem item) {
 	    // Handle presses on the action bar items
 	    switch (item.getItemId()) {
-	    //Check for Action Bar Selection
-	        case R.id.action_developerInfo: //Developer Information In Overflow
+	        case R.id.action_developerInfo:
 	        	Log.i("ITEM ID", "Developer Info Selected (R.id.action_developerInfo");
-	        	//Start Explicit Intent to Open Developer Info Activity
 	        	Intent developerPage = new Intent(this, DeveloperInfo.class);
 	        	startActivity(developerPage);
 	            return true;
@@ -80,19 +80,27 @@ public class MainActivity extends Activity {
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		// TODO Auto-generated method stub
-		/*
-		 * Check the requestCode.  If successful display a notification to the user at
-		 * the top of device.  If unsuccessful, log...
-		 */
 		if (requestCode == JavaScriptInterface.CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE) {
 			Log.i("OnActivityResult", "RESULT_OK");
 			notifyFinish();
-	    } else {
-	    	Log.i("onActivityResult", "Picture Was Cancelled");
 	    }
 	}
 	
-	//This Function triggers a notification to be created if there is a successful image
+//	public void cameraHandler(String response) {
+//		Log.i("cameraHandler()", response);
+//		//Create intent to use existing camera applications
+//		Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+//
+//		//Create Uri using the StoreMedia Class
+//		JavaScriptInterface.imageUri = StoreMedia.getOutputMediaFileUri(StoreMedia.MEDIA_TYPE_IMAGE);
+//		cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, JavaScriptInterface.imageUri);
+//
+//		
+//		startActivityForResult(cameraIntent, JavaScriptInterface.CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE);
+//		
+//	}
+
+	
 	public void notifyFinish() {
 
 		NotificationCompat.Builder notifyBuilder = new NotificationCompat.Builder(this)

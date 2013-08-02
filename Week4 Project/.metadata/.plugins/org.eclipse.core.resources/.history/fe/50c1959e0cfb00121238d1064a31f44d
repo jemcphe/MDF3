@@ -67,7 +67,6 @@ public class MainActivity extends Activity {
 	    //Check for Action Bar Selection
 	        case R.id.action_developerInfo: //Developer Information In Overflow
 	        	Log.i("ITEM ID", "Developer Info Selected (R.id.action_developerInfo");
-	        	//Start Explicit Intent to Open Developer Info Activity
 	        	Intent developerPage = new Intent(this, DeveloperInfo.class);
 	        	startActivity(developerPage);
 	            return true;
@@ -80,19 +79,27 @@ public class MainActivity extends Activity {
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		// TODO Auto-generated method stub
-		/*
-		 * Check the requestCode.  If successful display a notification to the user at
-		 * the top of device.  If unsuccessful, log...
-		 */
 		if (requestCode == JavaScriptInterface.CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE) {
 			Log.i("OnActivityResult", "RESULT_OK");
 			notifyFinish();
-	    } else {
-	    	Log.i("onActivityResult", "Picture Was Cancelled");
 	    }
 	}
 	
-	//This Function triggers a notification to be created if there is a successful image
+//	public void cameraHandler(String response) {
+//		Log.i("cameraHandler()", response);
+//		//Create intent to use existing camera applications
+//		Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+//
+//		//Create Uri using the StoreMedia Class
+//		JavaScriptInterface.imageUri = StoreMedia.getOutputMediaFileUri(StoreMedia.MEDIA_TYPE_IMAGE);
+//		cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, JavaScriptInterface.imageUri);
+//
+//		
+//		startActivityForResult(cameraIntent, JavaScriptInterface.CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE);
+//		
+//	}
+
+	
 	public void notifyFinish() {
 
 		NotificationCompat.Builder notifyBuilder = new NotificationCompat.Builder(this)

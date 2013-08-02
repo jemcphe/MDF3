@@ -9,47 +9,62 @@ import android.provider.MediaStore;
 import android.util.Log;
 import android.webkit.JavascriptInterface;
 import android.widget.Toast;
-/*
- * This class will be responsible for binding code Java code with Javascript code.
- * All of the Methods in this class are being called via javascript from index.html
- * located in the assets/www folder.
- */
+
 @SuppressLint("ValidFragment")
 public class JavaScriptInterface {
-	//Global Variables
 	Context _context;
-	public static Uri imageUri;
-	public static final int CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE = 100;
 	
-	//Set the Context of the JavaScriptInterface
+	public static Uri imageUri;
+	
+	
+	public static final int CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE = 100;
+//	private static final int CAPTURE_VIDEO_ACTIVITY_REQUEST_CODE = 200;
+	
+//	//Create an Interface to communicate with Activity
+//		public interface OnCameraButtonClicked {
+//			void cameraHandler(String response);
+//		}
+//	
+//	//Create a private connection to MainActivity method startSearchActivity
+//		private OnCameraButtonClicked parentActivity;
+//		
+//		
+//		
+//		public void onAttach(Activity activity) {
+//			// TODO Auto-generated method stub
+//			super.onAttach(activity);
+//			
+//			if(activity instanceof OnCameraButtonClicked){
+//				parentActivity = (OnCameraButtonClicked) activity;
+//			}
+//			else {
+//				throw new ClassCastException(activity.toString() + "must implement onCameraButtonClicked");
+//			}
+//			
+//		}
+	
 	JavaScriptInterface (Context context){
 		_context = context;
 	}
 	
-	/*
-	 * When Targeting Android SDK 17 or higher, you must implement
-	 * @JavascriptInterface to allow the Java to bind correctly to 
-	 * Javascript.
-	 * 
-	 * This Method is attached to a Target Button that will initiate the
-	 * Native camera.  Using an Intent to initiate and starting the activity for result.
-	 */
+    /** Show a toast from the web page */
+	@JavascriptInterface
+    public void showToast(String toast) {
+        Toast.makeText(_context, toast, Toast.LENGTH_SHORT).show();
+    }
+
 	@JavascriptInterface
 	public void startCamera(String response){
 		Log.i("startCamera", "Camera Started");
-		//Create the Intent
 		Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
 
 		//Create Uri using the StoreMedia Class
 		JavaScriptInterface.imageUri = StoreMedia.getOutputMediaFileUri(StoreMedia.MEDIA_TYPE_IMAGE);
 		cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, JavaScriptInterface.imageUri);
 		
-		/*
-		 * startActivityForResult will start the intent.  In order to use startActivityForResult, 
-		 * It must have an Activity to refer to.  The following allowed me to do this most effectively.
-		 */
 		((Activity) _context).startActivityForResult(cameraIntent, JavaScriptInterface.CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE);
 		
+//		startActivityForResult(cameraIntent, JavaScriptInterface.CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE);
 	}
 	
 }
